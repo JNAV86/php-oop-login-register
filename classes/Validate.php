@@ -2,6 +2,13 @@
 
 class Validate {
 
+  /*Create your own custom validation rules
+  to be check against when logging or registering users.
+
+  Show errors for the validations that didnt pass
+
+  Check if all your validation rules have been passed with a simple function*/
+
   private $_passed = false;
   private $_errors = array();
   private $_db = null;

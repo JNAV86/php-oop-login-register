@@ -2,7 +2,8 @@
 
 class Input {
 
-
+  /*Retrieve and get input values these 2
+  functions*/
 
   public static function exists($type = "post"){
  

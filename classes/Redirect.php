@@ -4,6 +4,9 @@
 
 class Redirect{
 
+	/*Make very easy redirects with this 
+	simple function*/
+
 	public static function to($location = null){
 
 		if($location){

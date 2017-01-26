@@ -3,6 +3,10 @@
 
 class Token {
 
+  /*
+  Create security tokens on pages to prevent
+  unecessary malicious attacks by generating tokens that can be validated against.
+  */
   public static function generate(){
 
     return Session::put(Config::get('session/token_name'), md5(uniqid()));

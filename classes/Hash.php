@@ -2,6 +2,8 @@
  
 class Hash{
 
+	//Encode strings with sha256 algorithm
+
 	public static function make($string, $salt = ''){
 		return hash('sha256', $string, $salt);
 	}

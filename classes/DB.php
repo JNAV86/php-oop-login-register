@@ -32,6 +32,7 @@ class DB {
     return self::$_instance;
   }
 
+  /*Make DB queries with simple function*/
   public function query($sql, $params = array()){
     $this->_error = false; 
 
@@ -66,7 +67,8 @@ class DB {
   }
 
 
-
+  /*Specify action of query such as 
+  SELECT * WHERE col = 1*/
   public function action($action, $table, $where = array()){
 
    
@@ -92,17 +94,26 @@ class DB {
     return false;
   }
 
+  /*Very simple function for performing
+  only SELECT SQL queries*/
   public function get($table, $where){
 
     return $this->action('SELECT *', $table, $where);
      
   }
 
+  /*Very simple function for deleting
+  rows in a table*/
+
   public function delete($table, $where){
     return $this->action('DELETE', $table, $where);
 
   }
 
+  /*Very simple function that lets you
+  insert rows by just entering the table 
+  and the fields and values in array 
+  format*/
   public function insert($table, $fields = array()){
 
     if(count($fields)){
@@ -131,6 +142,8 @@ class DB {
     return false;
   }
 
+  //Simple function for updating rows
+
   public function update($table, $fields = array(), $id){
 
     $set = '';
@@ -153,20 +166,30 @@ class DB {
     return false;
   }
 
+  /*pull the results from a query by using
+  this function*/
   public function results(){
 
     return $this->_results;
   }
 
+  /*Pull the first value of a SELECT query
+  by using this function*/
   public function first(){
 
     return $this->results()[0];
   }
 
+  /*Show all errors that may possibly
+  occur during SQL queries*/
+
   public function error(){
  
     return $this->_error;
   }
+
+  /*Count the number of results from your 
+  SQL queries*/
 
   public function count(){
  
