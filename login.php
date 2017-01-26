@@ -4,9 +4,14 @@ require_once 'core/init.php';
 
 
 if(Input::exists()){
+	//checks if input fields are set
 
 	if(Token::check(Input::get('token'))){
+		/*checks if security token generated on the page matches the one
+		being submitted*/
 
+
+		//Create rules for the fields being submitted on page
 		$validate = new Validate();
 		$validation = $validate->check($_POST, array(
 
@@ -17,6 +22,8 @@ if(Input::exists()){
 
 		if($validation->passed()){
 
+			//log user in when validation passes
+
 			$remember = (Input::get('remember') === 'on') ? true : false;
 
 			$user = new User();
@@ -24,6 +31,7 @@ if(Input::exists()){
 
 			if($login){
 
+				//redirect to home page
 				Redirect::to('index.php');
 
 			}else{
@@ -68,3 +76,7 @@ if(Input::exists()){
 
 	<input type="submit" value="Log in">
 </form>
+
+<div>
+	<p>Don't have an account? </p> <a href="register.php">Create New Account</a>
+</div>
