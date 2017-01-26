@@ -56,8 +56,6 @@ if(Input::exists()){
           'date_joined'=>date('Y-m-d H:i:s'),
           'groups'=> 1
           ));
-
-        Session::flash('home', 'You have successfully registered!');
         
         Redirect::to(404);
 
