@@ -1,33 +1,45 @@
-The main benefit one can get from this repository is reusable code straight out of the box for building any PHP app with a login or registration systems.  
+#OOP PHP LOGIN and REGISTER
 
+I created this project to help myself become familiar with coding using OOP principles and drop my old habit of only creating PHP scripts with procedural principles.
 
-For this example. 
-A database was created 3 tables.
-groups
-1. id (int - 11, auto_increment, primary) 
-2. name (varchar 20)
-3. permissions - (text)
+The reason for uploading this was to hopefully help someone use these features to mitigate redundant tasks when creating their own PHP applications that need user login and registration features.
 
-The groups table was created to store different types of roles along with their permissions that will be asigned to users.
+##Getting Started
 
-users
-1. id (int - 11, auto_increment, primary)
-2. username (varchar - 20)
-3. password (varchar - 64)
-4. salt (varchar - 32)
-5. name (varchar - 50)
-6. date_joined (datetime)
-7. groups (int - 11)
+###Requirements 
 
-The users table was used to store all the information of registered users.
+- Apache
+- PHP
+- MySQL
+- phpMyAdmin
+    * You can easily have this with a simple installation of [MAMP(Mac OSX)](https://www.mamp.info/en/) or [XAMPP(Windows)](https://www.apachefriends.org/index.html)
 
-user_sessions 
-1. id (int - 11, auto_increment, primary)
-2. user_id (int - 11)
-3. hash (varchar - 64)
+1. Create a database with the name 'githubtest' in phpMyAdmin
+2. Create the following tables listed below in the Database 'githubtest' with the columns and their attributes stated.
 
+    * ***Table 1 - groups***
+      * *This table will store the different roles that will be assigned to users registering*
+      * NAME: id || TYPE: INT || Length/Values: 11 || A_I/auto_increment: check || INDEX: PRIMARY
+      * NAME: name || TYPE: VARCHAR || Length/Values: 20
+      * NAME: permissions || TYPE: TEXT
 
-This table will store the information required to restore sessions as is for users who opted to be remembered.
+    * ***Table 2 - users***
+      * *This table will store the information of users who register*
+      * NAME: id || TYPE: INT || Length/Values: 11 || A_I/auto_increment: check || INDEX: PRIMARY)
+      * NAME: username || TYPE: VARCHAR || Length/Values: 20
+      * NAME: password || TYPE: VARHCAR || Length/Values: 64
+      * NAME: salt || TYPE: VARCHAR || Length/Values: 32
+      * NAME: name || TYPE: VARCHAR || Length/Values: 50)
+      * NAME: date_joined || TYPE: DATETIME
+      * NAME: groups || TYPE: INT || Length/Values: 11)
+      
+    * ***Table 3 - user_sessions***
+      * *This table will store the information required to make users use the 'remember me' feature.*
+      * NAME: id || TYPE: INT || Length/Values: 11 || A_I/auto_increment: check || INDEX: PRIMARY
+      * NAME: user_id || TYPE: INT || Length/Values: 11
+      * NAME: hash || TYPE: VARCHAR || Length/Values: 64
+
+## How it All Works
 
 Config class
 
