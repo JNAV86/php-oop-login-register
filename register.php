@@ -5,9 +5,11 @@ require_once 'core/init.php';
 
 
 if(Input::exists()){
+//check if input fields are set
 
   if(Token::check(Input::get('token'))){
-
+    /*security check ensuring the token being submitted is the same
+    as the one generated on the page*/
      
     $validate = new Validate();
     $validation = $validate->check($_POST, array(
@@ -38,6 +40,8 @@ if(Input::exists()){
 
       ),
     ));
+    /*Validation checks for the different fields on the page*/
+
 
      if($validation->passed()){
        
@@ -47,6 +51,9 @@ if(Input::exists()){
       $salt = Hash::salt(32);
        
       try{
+        //Create a new user and inserting the info in user table.
+        $username = Input::get('username');
+        $password = Input::get('password');
 
         $user->create(array(
           'username'=> Input::get('username'), 
@@ -56,8 +63,21 @@ if(Input::exists()){
           'date_joined'=>date('Y-m-d H:i:s'),
           'groups'=> 1
           ));
+
         
-        Redirect::to(404);
+        //Success message when account is created
+        Session::put('home', 'Success, account created');
+
+        //Log the User In
+        $login = $user->login($username, $password);
+
+        if ($login) {
+          //redirect to homepage
+          Redirect::to('index.php');
+        }
+
+
+        //redirect to the homepage after successful registration.
 
       }catch(Exception $e){
         die($e->getMessage());
@@ -67,6 +87,7 @@ if(Input::exists()){
      
       foreach ($validation->errors() as $error) {
         echo $error.' <br>';
+        //displays error if any should occur.
       }
     }
 
